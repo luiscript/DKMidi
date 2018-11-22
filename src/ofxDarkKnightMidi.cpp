@@ -32,7 +32,7 @@ void ofxDarkKnightMidi::draw()
 
 void ofxDarkKnightMidi::addModuleParameters()
 {
-    midiInputList = midiIn.getPortList();
+    midiInputList = midiIn.getInPortList();
     ofxDatGuiComponent * component = gui->addDropdown("MIDI Input", midiInputList);
     component->onDropdownEvent(this, &ofxDarkKnightMidi::onMidiInputListChange);
 }
