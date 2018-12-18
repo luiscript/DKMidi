@@ -77,7 +77,6 @@ void ofxDarkKnightMidi::newMidiMessage(ofxMidiMessage& msg)
             } else {
                 int * scale = new int;;
                 poolMidiMappings.insert({mapping, scale});
-                gui->setTheme(this->getGuiTheme());
                 gui->setWidth(450);
                 ofxDatGuiSlider * component = gui->addSlider(mapping, 0, 128);
                 
