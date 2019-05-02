@@ -1,25 +1,25 @@
 //
-//  ofxDarkKnightMidi.cpp
+//  DarkKnightMidiControlIn.cpp
 //  luiscript
 //
 //  Created by luiscript on 12/01/18.
 //
 //
 
-#include "ofxDarkKnightMidi.hpp"
+#include "DarkKnightMidiControlIn.hpp"
 
 
-void ofxDarkKnightMidi::setup()
+void DarkKnightMidiControlIn::setup()
 {
-     signalLedControl = signalLedPitch = ofColor::black;
+    signalLedControl = signalLedPitch = ofColor::black;
 }
 
-void ofxDarkKnightMidi::update()
+void DarkKnightMidiControlIn::update()
 {
     signalLedControl = ofColor::black;
 }
 
-void ofxDarkKnightMidi::draw()
+void DarkKnightMidiControlIn::draw()
 {
     ofPushStyle();
     ofSetColor(signalLedControl);
@@ -30,24 +30,24 @@ void ofxDarkKnightMidi::draw()
     
 }
 
-void ofxDarkKnightMidi::addModuleParameters()
+void DarkKnightMidiControlIn::addModuleParameters()
 {
     midiInputList = midiIn.getInPortList();
     ofxDatGuiComponent * component = gui->addDropdown("MIDI Input", midiInputList);
-    component->onDropdownEvent(this, &ofxDarkKnightMidi::onMidiInputListChange);
+    component->onDropdownEvent(this, &DarkKnightMidiControlIn::onMidiInputListChange);
 }
 
-void ofxDarkKnightMidi::drawMasterInput()
+void DarkKnightMidiControlIn::drawMasterInput()
 {
     
 }
 
-void ofxDarkKnightMidi::drawMasterOutput()
+void DarkKnightMidiControlIn::drawMasterOutput()
 {
-   
+    
 }
 
-void ofxDarkKnightMidi::onMidiInputListChange(ofxDatGuiDropdownEvent e)
+void DarkKnightMidiControlIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 {
     if(midiIn.isOpen())
     {
@@ -60,7 +60,7 @@ void ofxDarkKnightMidi::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 }
 
 
-void ofxDarkKnightMidi::newMidiMessage(ofxMidiMessage& msg)
+void DarkKnightMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
 {
     ofNotifyEvent(sendMidi, msg, this);
     string mapping;
@@ -99,4 +99,5 @@ void ofxDarkKnightMidi::newMidiMessage(ofxMidiMessage& msg)
         signalLedPitch = msg.status == MIDI_NOTE_ON ? ofColor(232, 181, 54) : ofColor(0);
     }
 }
+
 

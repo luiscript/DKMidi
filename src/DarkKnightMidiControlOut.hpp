@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2018 Luis Fernando García [http://luiscript.com]
+ Copyright (C) 2019 Luis Fernando García [http://luiscript.com]
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +20,28 @@
  SOFTWARE.
  */
 
-#ifndef ofxDarkKnightMidi_hpp
-#define ofxDarkKnightMidi_hpp
+#ifndef MidiOut_hpp
+#define MidiOut_hpp
 
-#include "ofMain.h"
-#include "ofxDatGui.h"
 #include "module.hpp"
 #include "ofxMidi.h"
-#include "unordered_map"
 
-
-class ofxDarkKnightMidi : public Module, public ofxMidiListener
+class DarkKnightMidiControlOut : public Module
 {
 private:
-    unordered_map<string, int *> poolMidiMappings;
-    vector<string> midiInputList;
-    ofxMidiIn midiIn;
-    ofColor signalLedControl;
-    ofColor signalLedPitch;
+    int channel;
+    int control;
+    int value;
+    int lastValue;
+    ofxMidiMessage midiMessage;
+    
 public:
-    ofEvent<ofxMidiMessage&> sendMidi;
     void setup();
     void update();
     void draw();
-    void drawMasterOutput();
-    void drawMasterInput();
     void addModuleParameters();
-    void onMidiInputListChange(ofxDatGuiDropdownEvent);
-    void newMidiMessage(ofxMidiMessage& eventArgs);
+    void onOuputControlChange(ofxDatGuiTextInputEvent);
+    void onOutputChannelChange(ofxDatGuiTextInputEvent);
 };
 
-#endif /* ofxDarkKnightMidi_hpp */
+#endif /* MidiOut_hpp */
