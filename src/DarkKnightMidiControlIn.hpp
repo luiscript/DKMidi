@@ -45,6 +45,7 @@ public:
     void addModuleParameters();
     void onMidiInputListChange(ofxDatGuiDropdownEvent);
     void newMidiMessage(ofxMidiMessage& eventArgs);
+    void unMount();
 };
 
 #endif /* DarkKnightMidiControlIn_hpp */

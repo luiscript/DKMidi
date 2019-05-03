@@ -100,4 +100,9 @@ void DarkKnightMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
     }
 }
 
+void DarkKnightMidiControlIn::unMount()
+{
+    ofRemoveListener(this->sendMidi, this, &DarkKnightMidiControlIn::newMidiMessage);
+}
+
 
