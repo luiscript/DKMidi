@@ -25,5 +25,6 @@
 
 #include "DarkKnightMidiControlIn.hpp"
 #include "DarkKnightMidiControlOut.hpp"
+#include "DarkKnightMidiClockIn.hpp"
 
 #endif /* DarkKnightMidi_hpp */
