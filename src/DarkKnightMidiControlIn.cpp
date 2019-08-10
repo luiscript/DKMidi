@@ -81,9 +81,9 @@ void DarkKnightMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
             } else {
                 int * scale = new int;;
                 poolMidiMappings.insert({mapping, scale});
-                gui->setWidth(450);
-                ofxDatGuiSlider * component = gui->addSlider(mapping, 0, 128);
                 
+                ofxDatGuiSlider * component = gui->addSlider(mapping, 0, 128);
+				gui->setWidth(ofGetWidth() / 5);
                 component->bind(*scale);
                 component->toggleMidiMode();
             }
