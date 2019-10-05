@@ -50,8 +50,6 @@ void DarkKnightMidiControlOut::draw()
 
 void DarkKnightMidiControlOut::addModuleParameters()
 {
-    
-    
     gui->addSlider("Value", 0, 127, 0)->bind(value);
     ofxDatGuiFolder * config = gui->addFolder("CONFIG");
     ofxDatGuiTextInput * channelComponent = config->addTextInput("Channel", "1");
