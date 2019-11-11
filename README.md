@@ -1,4 +1,4 @@
-## DarkKnightMidi ##
+## DKMidi ##
 
 **MIDI controller modules for ofxDarkKnight**
 
@@ -6,14 +6,14 @@
 - Include this as a submodule of [ofxDarkKnight](https://github.com/luiscript/ofxDarkKnight)
 
 ## Modules included in this repository
-- DarkKnightMidiControlIn
-- DarkKnightMidiControlOut
-- DarkKnightMidiClockIn
+- DKMidiControlIn
+- DKMidiControlOut
+- DKMidiClockIn
 
 ## Dependencies
 - [ofxMidi](https://github.com/danomatika/ofxMidi) 
 
 ## Tested on
-- Mac OSX 10.13.6  
-- OF 0.10.1 
-- Xcode 10.1
+- OF 0.10.1  
+- Mac OSX 10.13.6 - Xcode 10.1 
+- Windows 10 - VS 2019

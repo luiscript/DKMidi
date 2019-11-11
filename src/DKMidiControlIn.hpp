@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2019 Luis Fernando García [http://luiscript.com]
+ Copyright (C) 2018 Luis Fernando García [http://luiscript.com]
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,21 @@
  SOFTWARE.
  */
 
-#ifndef DarkKnightMidiClockIn_hpp
-#define DarkKnightMidiClockIn_hpp
+#ifndef DKMidiControlIn_hpp
+#define DKMidiControlIn_hpp
 
-
-#include "module.hpp"
+#include "DKModule.hpp"
 #include "ofxMidi.h"
+#include "unordered_map"
 
-class DarkKnightMidiClockIn : public Module, public ofxMidiListener
+class DKMidiControlIn : public DKModule, public ofxMidiListener
 {
 private:
+    unordered_map<string, int *> poolMidiMappings;
+    vector<string> midiInputList;
     ofxMidiIn midiIn;
     ofColor signalLedControl;
-    float oneBeatVector;
-    float twoBeatVector;
-    float oneBarVector;
-    float twoBarVector;
-    float fourBarVector;
-    float eightBarVector;
-    bool clockRunning = false;
-    int ticks;
-    vector<string> midiInputList;
+    ofColor signalLedPitch;
 public:
     ofEvent<ofxMidiMessage&> sendMidi;
     void setup();
@@ -52,4 +46,5 @@ public:
     void unMount();
 };
 
-#endif /* DarkKnightMidiClockIn_hpp */
+#endif /* DKMidiControlIn_hpp */
+

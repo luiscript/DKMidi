@@ -20,20 +20,20 @@
  SOFTWARE.
  */
 
-#include "DarkKnightMidiControlIn.hpp"
+#include "DKMidiControlIn.hpp"
 
 
-void DarkKnightMidiControlIn::setup()
+void DKMidiControlIn::setup()
 {
     signalLedControl = signalLedPitch = ofColor::black;
 }
 
-void DarkKnightMidiControlIn::update()
+void DKMidiControlIn::update()
 {
     signalLedControl = ofColor::black;
 }
 
-void DarkKnightMidiControlIn::draw()
+void DKMidiControlIn::draw()
 {
     ofPushStyle();
     ofSetColor(signalLedControl);
@@ -44,14 +44,14 @@ void DarkKnightMidiControlIn::draw()
     
 }
 
-void DarkKnightMidiControlIn::addModuleParameters()
+void DKMidiControlIn::addModuleParameters()
 {
     midiInputList = midiIn.getInPortList();
     ofxDatGuiComponent * component = gui->addDropdown("MIDI Input", midiInputList);
-    component->onDropdownEvent(this, &DarkKnightMidiControlIn::onMidiInputListChange);
+    component->onDropdownEvent(this, &DKMidiControlIn::onMidiInputListChange);
 }
 
-void DarkKnightMidiControlIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
+void DKMidiControlIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 {
     if(midiIn.isOpen())
     {
@@ -64,7 +64,7 @@ void DarkKnightMidiControlIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 }
 
 
-void DarkKnightMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
+void DKMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
 {
     ofNotifyEvent(sendMidi, msg, this);
     string mapping;
@@ -104,9 +104,9 @@ void DarkKnightMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
     }
 }
 
-void DarkKnightMidiControlIn::unMount()
+void DKMidiControlIn::unMount()
 {
-    ofRemoveListener(this->sendMidi, this, &DarkKnightMidiControlIn::newMidiMessage);
+    ofRemoveListener(this->sendMidi, this, &DKMidiControlIn::newMidiMessage);
 }
 
 

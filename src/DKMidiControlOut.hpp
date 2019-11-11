@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2018 Luis Fernando García [http://luiscript.com]
+ Copyright (C) 2019 Luis Fernando García [http://luiscript.com]
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,28 @@
  SOFTWARE.
  */
 
-#ifndef ofxDarkKnightMidi_hpp
-#define ofxDarkKnightMidi_hpp
+#ifndef MidiOut_hpp
+#define MidiOut_hpp
 
-#include "DarkKnightMidiControlIn.hpp"
-#include "DarkKnightMidiControlOut.hpp"
-#include "DarkKnightMidiClockIn.hpp"
+#include "DKModule.hpp"
+#include "ofxMidi.h"
 
-#endif /* DarkKnightMidi_hpp */
+class DKMidiControlOut : public DKModule
+{
+private:
+    int channel;
+    int control;
+    int value;
+    int lastValue;
+    ofxMidiMessage midiMessage;
+    
+public:
+    void setup();
+    void update();
+    void draw();
+    void addModuleParameters();
+    void onOuputControlChange(ofxDatGuiTextInputEvent);
+    void onOutputChannelChange(ofxDatGuiTextInputEvent);
+};
+
+#endif /* MidiOut_hpp */

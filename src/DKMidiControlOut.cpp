@@ -20,10 +20,10 @@
  SOFTWARE.
  */
 
-#include "DarkKnightMidiControlOut.hpp"
+#include "DKMidiControlOut.hpp"
 
 
-void DarkKnightMidiControlOut::setup()
+void DKMidiControlOut::setup()
 {
     channel = 1;
     control = 1;
@@ -31,7 +31,7 @@ void DarkKnightMidiControlOut::setup()
     lastValue = 0;
 }
 
-void DarkKnightMidiControlOut::update()
+void DKMidiControlOut::update()
 {
     if(value != lastValue)
     {
@@ -43,28 +43,28 @@ void DarkKnightMidiControlOut::update()
     }
 }
 
-void DarkKnightMidiControlOut::draw()
+void DKMidiControlOut::draw()
 {
     
 }
 
-void DarkKnightMidiControlOut::addModuleParameters()
+void DKMidiControlOut::addModuleParameters()
 {
     gui->addSlider("Value", 0, 127, 0)->bind(value);
     ofxDatGuiFolder * config = gui->addFolder("CONFIG");
     ofxDatGuiTextInput * channelComponent = config->addTextInput("Channel", "1");
-    channelComponent->onTextInputEvent(this, &DarkKnightMidiControlOut::onOutputChannelChange);
+    channelComponent->onTextInputEvent(this, &DKMidiControlOut::onOutputChannelChange);
     
     ofxDatGuiTextInput * controlComponent = config->addTextInput("Control", "0");
-    controlComponent->onTextInputEvent(this, &DarkKnightMidiControlOut::onOuputControlChange);
+    controlComponent->onTextInputEvent(this, &DKMidiControlOut::onOuputControlChange);
 }
 
-void DarkKnightMidiControlOut::onOutputChannelChange(ofxDatGuiTextInputEvent e)
+void DKMidiControlOut::onOutputChannelChange(ofxDatGuiTextInputEvent e)
 {
     channel = ofToInt(e.target->getText());
 }
 
-void DarkKnightMidiControlOut::onOuputControlChange(ofxDatGuiTextInputEvent e)
+void DKMidiControlOut::onOuputControlChange(ofxDatGuiTextInputEvent e)
 {
     control = ofToInt(e.target->getText());
 }

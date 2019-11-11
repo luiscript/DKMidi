@@ -20,10 +20,10 @@
  SOFTWARE.
  */
 
-#include "DarkKnightMidiClockIn.hpp"
+#include "DKMidiClockIn.hpp"
 
 
-void DarkKnightMidiClockIn::setup()
+void DKMidiClockIn::setup()
 {
     signalLedControl = ofColor::black;
     ticks = 0;
@@ -31,7 +31,7 @@ void DarkKnightMidiClockIn::setup()
     fourBarVector = eightBarVector = 0.0;
 }
 
-void DarkKnightMidiClockIn::update()
+void DKMidiClockIn::update()
 {
     signalLedControl = fmod(ticks, 24.0) / 24.0 < 0.25
         ? ofColor(232, 181, 54)
@@ -45,7 +45,7 @@ void DarkKnightMidiClockIn::update()
     eightBarVector = fmod(ticks, 768.0) / 768.0;
 }
 
-void DarkKnightMidiClockIn::draw()
+void DKMidiClockIn::draw()
 {
     ofPushStyle();
     ofSetColor(signalLedControl);
@@ -54,7 +54,7 @@ void DarkKnightMidiClockIn::draw()
     
 }
 
-void DarkKnightMidiClockIn::addModuleParameters()
+void DKMidiClockIn::addModuleParameters()
 {
     gui->addSlider("1 Beat", 0, 1, 0)->setPrecision(4)->bind(oneBeatVector);
     gui->addSlider("2 Beats", 0, 1, 0)->setPrecision(4)->bind(twoBeatVector);
@@ -65,11 +65,11 @@ void DarkKnightMidiClockIn::addModuleParameters()
     
     midiInputList = midiIn.getInPortList();
     ofxDatGuiComponent * component = gui->addDropdown("MIDI Input", midiInputList);
-    component->onDropdownEvent(this, &DarkKnightMidiClockIn::onMidiInputListChange);
+    component->onDropdownEvent(this, &DKMidiClockIn::onMidiInputListChange);
     
 }
 
-void DarkKnightMidiClockIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
+void DKMidiClockIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 {
     if(midiIn.isOpen())
     {
@@ -82,7 +82,7 @@ void DarkKnightMidiClockIn::onMidiInputListChange(ofxDatGuiDropdownEvent e)
 }
 
 
-void DarkKnightMidiClockIn::newMidiMessage(ofxMidiMessage& msg)
+void DKMidiClockIn::newMidiMessage(ofxMidiMessage& msg)
 {
     // MIDI Clock tick standard
     if(msg.bytes[0] == 248)
@@ -101,9 +101,9 @@ void DarkKnightMidiClockIn::newMidiMessage(ofxMidiMessage& msg)
     }
 }
 
-void DarkKnightMidiClockIn::unMount()
+void DKMidiClockIn::unMount()
 {
-    ofRemoveListener(this->sendMidi, this, &DarkKnightMidiClockIn::newMidiMessage);
+    ofRemoveListener(this->sendMidi, this, &DKMidiClockIn::newMidiMessage);
 }
 
 
