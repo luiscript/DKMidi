@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2018 Luis Fernando García [http://luiscript.com]
+ Copyright (C) 2018 Luis Fernando García Pérez [http://luiscript.com]
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -68,7 +68,7 @@ void DKMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
 {
     ofNotifyEvent(sendMidi, msg, this);
     string mapping;
-    if(msg.control > 0)
+    if(msg.control > 0 && gui->getFocused())
     {
         mapping = ofToString(msg.channel) + "/" + ofToString(msg.control);
         if(this->getModuleMidiMapMode()){
@@ -83,7 +83,7 @@ void DKMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
                 poolMidiMappings.insert({mapping, scale});
                 
                 ofxDatGuiSlider * component = gui->addSlider(mapping, 0, 128);
-				gui->setWidth(ofGetWidth() / 5);
+				gui->setWidth(moduleGuiWidth);
                 component->bind(*scale);
                 component->toggleMidiMode();
             }
