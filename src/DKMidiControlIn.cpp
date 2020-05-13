@@ -68,7 +68,7 @@ void DKMidiControlIn::newMidiMessage(ofxMidiMessage& msg)
 {
     ofNotifyEvent(sendMidi, msg, this);
     string mapping;
-    if(msg.control > 0 && gui->getFocused())
+    if(msg.control > 0)
     {
         mapping = ofToString(msg.channel) + "/" + ofToString(msg.control);
         if(this->getModuleMidiMapMode()){
